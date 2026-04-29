@@ -1,6 +1,12 @@
 # bufbuild/buf-lint-action
 
-Hardened GitHub Action by [Chainguard](https://www.chainguard.dev).
+Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at [https://github.com/bufbuild/buf-lint-action](https://github.com/bufbuild/buf-lint-action).
+
+## Versions
+
+| Version | Tag | Upstream commit |
+|---------|-----|-----------------|
+| v1.1.1 | [`v1.1.1`](https://github.com/chainguard-actions/buf-lint-action/tree/v1.1.1) | — |
 
 ## Privacy
 
