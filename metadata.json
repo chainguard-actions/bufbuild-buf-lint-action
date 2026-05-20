@@ -1,6 +1,0 @@
-{
-  "owner": "bufbuild",
-  "name": "buf-lint-action",
-  "visibility": "internal",
-  "block_publish": false
-}
