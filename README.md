@@ -1,5 +1,8 @@
 # bufbuild/buf-lint-action
 
+Check that the Input location passes lint checks.
+
+
 Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at [https://github.com/bufbuild/buf-lint-action](https://github.com/bufbuild/buf-lint-action).
 
 ## Versions
