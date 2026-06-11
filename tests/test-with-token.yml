@@ -1,0 +1,28 @@
+name: Test buf-lint with buf_token input
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install buf
+        run: |
+          curl -sSL \
+            "https://github.com/bufbuild/buf/releases/download/v1.28.1/buf-Linux-x86_64" \
+            -o /usr/local/bin/buf
+          chmod +x /usr/local/bin/buf
+          buf --version
+
+      - id: lint
+        name: Run buf-lint with buf_token set
+        uses: .
+        with:
+          input: ${{ github.workspace }}/actions/hardened/bufbuild--buf-lint-action/v1.1.1/tests/fixtures/proto
+          buf_token: dummy-token-for-testing
+
+      - name: Assert lint passed with token (no failure)
+        run: |
+          echo "buf lint completed successfully with buf_token set"
+          echo "PASS"

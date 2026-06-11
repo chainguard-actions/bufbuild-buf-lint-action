@@ -1,0 +1,27 @@
+name: Test buf-lint basic usage
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install buf
+        run: |
+          curl -sSL \
+            "https://github.com/bufbuild/buf/releases/download/v1.28.1/buf-Linux-x86_64" \
+            -o /usr/local/bin/buf
+          chmod +x /usr/local/bin/buf
+          buf --version
+
+      - id: lint
+        name: Run buf-lint on valid proto fixtures
+        uses: .
+        with:
+          input: ${{ github.workspace }}/actions/hardened/bufbuild--buf-lint-action/v1.1.1/tests/fixtures/proto
+
+      - name: Assert lint passed (no failure)
+        run: |
+          echo "buf lint completed successfully on valid proto files"
+          echo "PASS"

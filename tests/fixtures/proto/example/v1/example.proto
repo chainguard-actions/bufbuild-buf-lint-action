@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package example.v1;
+
+option go_package = "example/v1;examplev1";
+
+// ExampleService is a simple example service.
+service ExampleService {
+  // GetExample returns an example.
+  rpc GetExample(GetExampleRequest) returns (GetExampleResponse) {}
+}
+
+// GetExampleRequest is the request message for GetExample.
+message GetExampleRequest {
+  // id is the identifier of the example.
+  string id = 1;
+}
+
+// GetExampleResponse is the response message for GetExample.
+message GetExampleResponse {
+  // id is the identifier of the example.
+  string id = 1;
+  // name is the name of the example.
+  string name = 2;
+}
