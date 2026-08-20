@@ -9,7 +9,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
-| v1.1.1 | [`v1.1.1`](https://github.com/chainguard-actions/bufbuild-buf-lint-action/tree/v1.1.1) | — |
+| v1.1.1 | [`v1.1.1`](https://github.com/chainguard-actions/bufbuild-buf-lint-action/tree/v1.1.1) | [`06f9dd8`](https://github.com/bufbuild/buf-lint-action/commit/06f9dd823d873146471cfaaf108a993fe00e5325) |
 
 ## Privacy
 
