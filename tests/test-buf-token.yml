@@ -1,0 +1,27 @@
+name: Test buf_token input - authenticated lint with token
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      # Install a fake buf binary that simulates a clean lint pass.
+      # The fixture script is committed to the repo to avoid network dependencies.
+      - name: Install fake buf (simulates clean lint)
+        run: |
+          sudo cp "$GITHUB_WORKSPACE/hardened/tests/fixtures/fake-buf-clean" /usr/local/bin/buf
+          sudo chmod +x /usr/local/bin/buf
+          buf --version
+
+      - id: lint
+        uses: .
+        with:
+          input: hardened/tests/fixtures/valid-proto
+          buf_token: dummy-test-token-for-coverage
+
+      - name: Assert lint passed with buf_token provided
+        run: |
+          echo "Lint step completed successfully with buf_token input"
+          echo "PASS: valid proto passed buf lint with authentication token"

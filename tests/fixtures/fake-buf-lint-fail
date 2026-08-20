@@ -1,0 +1,26 @@
+#!/bin/sh
+# Fake buf binary: simulates lint failure (exit code 100)
+case "$1" in
+  --version)
+    echo "1.28.1"
+    exit 0
+    ;;
+  lint)
+    # Check if --error-format=json flag is present
+    for arg in "$@"; do
+      case "$arg" in
+        --error-format=json)
+          printf '%s\n' '{"path":"bad.proto","start_line":1,"start_column":1,"end_line":1,"end_column":1,"type":"PACKAGE_DEFINED","message":"Files with package declarations do not have a corresponding package comment."}'
+          exit 100
+          ;;
+      esac
+    done
+    # Plain text output
+    echo 'bad.proto:1:1:Files with package declarations do not have a corresponding package comment.'
+    exit 100
+    ;;
+  *)
+    echo "fake buf: unknown command $1" >&2
+    exit 1
+    ;;
+esac

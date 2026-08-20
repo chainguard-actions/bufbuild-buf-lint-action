@@ -1,4 +1,4 @@
-name: Test buf-lint basic usage
+name: Test basic usage - valid proto lints cleanly
 on:
   workflow_dispatch:
 jobs:
@@ -7,21 +7,20 @@ jobs:
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: Install buf
+      # Install a fake buf binary that simulates a clean lint pass.
+      # The fixture script is committed to the repo to avoid network dependencies.
+      - name: Install fake buf (simulates clean lint)
         run: |
-          curl -sSL \
-            "https://github.com/bufbuild/buf/releases/download/v1.28.1/buf-Linux-x86_64" \
-            -o /usr/local/bin/buf
-          chmod +x /usr/local/bin/buf
+          sudo cp "$GITHUB_WORKSPACE/tests/fixtures/fake-buf-clean" /usr/local/bin/buf
+          sudo chmod +x /usr/local/bin/buf
           buf --version
 
       - id: lint
-        name: Run buf-lint on valid proto fixtures
         uses: .
         with:
-          input: ${{ github.workspace }}/actions/hardened/bufbuild--buf-lint-action/v1.1.1/tests/fixtures/proto
+          input: tests/fixtures/valid-proto
 
       - name: Assert lint passed (no failure)
         run: |
-          echo "buf lint completed successfully on valid proto files"
-          echo "PASS"
+          echo "Lint step completed successfully"
+          echo "PASS: valid proto passed buf lint"

@@ -1,0 +1,34 @@
+name: Test lint failure - invalid proto fails lint
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      # Install a fake buf binary that simulates lint failures.
+      # Exit code 100 is the buf lint failure exit code.
+      # The fixture script is committed to the repo to avoid network dependencies.
+      - name: Install fake buf (simulates lint failure)
+        run: |
+          sudo cp "$GITHUB_WORKSPACE/tests/fixtures/fake-buf-lint-fail" /usr/local/bin/buf
+          sudo chmod +x /usr/local/bin/buf
+          buf --version
+
+      - id: lint
+        uses: .
+        with:
+          input: tests/fixtures/invalid-proto
+        continue-on-error: true
+
+      - name: Assert lint failed as expected
+        env:
+          OUTCOME: ${{ steps.lint.outcome }}
+        run: |
+          echo "outcome: $OUTCOME"
+          if [ "$OUTCOME" != "failure" ]; then
+            echo "FAIL: expected lint to fail on invalid proto, but got outcome '$OUTCOME'"
+            exit 1
+          fi
+          echo "PASS: lint correctly failed on invalid proto"

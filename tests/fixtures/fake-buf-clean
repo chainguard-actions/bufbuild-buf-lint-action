@@ -1,0 +1,16 @@
+#!/bin/sh
+# Fake buf binary: simulates a clean lint pass (no errors)
+case "$1" in
+  --version)
+    echo "1.28.1"
+    exit 0
+    ;;
+  lint)
+    # Exit 0 means no lint errors
+    exit 0
+    ;;
+  *)
+    echo "fake buf: unknown command $1" >&2
+    exit 1
+    ;;
+esac

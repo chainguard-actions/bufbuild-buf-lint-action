@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package hello.v1;
+
+option go_package = "github.com/example/hello/v1;hellov1";
+
+// HelloService is a simple greeting service.
+service HelloService {
+  // SayHello says hello.
+  rpc SayHello(SayHelloRequest) returns (SayHelloResponse);
+}
+
+// SayHelloRequest is the request for SayHello.
+message SayHelloRequest {
+  // name is the name to greet.
+  string name = 1;
+}
+
+// SayHelloResponse is the response for SayHello.
+message SayHelloResponse {
+  // greeting is the greeting message.
+  string greeting = 1;
+}

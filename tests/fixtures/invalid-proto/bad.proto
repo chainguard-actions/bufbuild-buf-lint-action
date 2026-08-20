@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+// No package declaration - violates PACKAGE_DEFINED lint rule.
+// Also missing comments on message/fields - violates COMMENT_* rules.
+message BadMessage {
+  string name = 1;
+}
