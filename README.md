@@ -7,9 +7,9 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 ## Versions
 
-| Version | Tag | Upstream commit |
-|---------|-----|-----------------|
-| v1.1.1 | [`v1.1.1`](https://github.com/chainguard-actions/bufbuild-buf-lint-action/tree/v1.1.1) | [`06f9dd8`](https://github.com/bufbuild/buf-lint-action/commit/06f9dd823d873146471cfaaf108a993fe00e5325) |
+| Version | Tag | Upstream commit | Hardening report |
+|---------|-----|-----------------|------------------|
+| v1.1.1 | [`v1.1.1`](https://github.com/chainguard-actions/bufbuild-buf-lint-action/tree/v1.1.1) | [`06f9dd8`](https://github.com/bufbuild/buf-lint-action/commit/06f9dd823d873146471cfaaf108a993fe00e5325) | [`HARDENING.md`](https://github.com/chainguard-actions/bufbuild-buf-lint-action/blob/v1.1.1/HARDENING.md) |
 
 ## Privacy
 
